@@ -42,3 +42,5 @@ Trips.init(
     modelName: 'trips'
   }
 );
+
+module.exports = Trips;
