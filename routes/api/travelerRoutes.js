@@ -34,8 +34,8 @@ router.get('/:id', async (req, res) => {
 // Creates single traveler
 router.post('/', async (req, res) =>{
   try {
-    const travData = await Traveler.create(req.body);
-    res.status(200).json(travData);
+    const travelerData = await Traveler.create(req.body);
+    res.status(200).json(travelerData);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -44,18 +44,18 @@ router.post('/', async (req, res) =>{
 //Deletes single traveler
 router.delete('/:id', async(req, res) => {
   try {
-    const travData = await Traveler.destroy({
+    const travelerData = await Traveler.destroy({
       where: {
         id: req.params.id
       }
     });
 
-    if(!travData) {
+    if(!travelerData) {
       res.status(404).json({ message: 'No traveler found with that id.'});
       return;
     }
 
-    res.status(200).json(travData);
+    res.status(200).json(travelerData);
   } catch (err) {
     res.status(500).json(err);
   }
