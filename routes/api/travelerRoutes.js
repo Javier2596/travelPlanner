@@ -18,7 +18,7 @@ router.get('/', async( req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const travelerData = await Traveler.findByPk(req.params.id, {
-      include: [{ model: Location}, { model: Trips }],
+      include: [{ model: Location, through: Trips, as: 'planned_trip' }],
     });
 
     if(!travelerData) {
@@ -27,6 +27,35 @@ router.get('/:id', async (req, res) => {
     }
 
     res.status (200).json(travelerData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+// Creates single traveler
+router.post('/', async (req, res) =>{
+  try {
+    const travData = await Traveler.create(req.body);
+    res.status(200).json(travData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+//Deletes single traveler
+router.delete('/:id', async(req, res) => {
+  try {
+    const travData = await Traveler.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+
+    if(!travData) {
+      res.status(404).json({ message: 'No traveler found with that id.'});
+      return;
+    }
+
+    res.status(200).json(travData);
   } catch (err) {
     res.status(500).json(err);
   }
