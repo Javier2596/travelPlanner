@@ -4,9 +4,7 @@ const { Traveler, Location, Trips } = require('../../models');
 //GET all travelers
 router.get('/', async( req, res) => {
   try {
-    const travelerData = await Traveler.findAll({
-      include: [{ model: Location }, { model: Trips }],
-    });
+    const travelerData = await Traveler.findAll();
     res.status(200).json(travelerData);
   } catch (err) {
     res.status(500).json(err);

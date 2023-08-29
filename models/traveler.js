@@ -7,7 +7,7 @@ class Traveler extends Model {}
 Traveler.init(
   {
     id: {
-      type: DataTypes.INTERGER,
+      type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
@@ -21,7 +21,7 @@ Traveler.init(
       allowNull: false,
       unique: true,
       validate: {
-        isEMail: true,
+        isEmail: true,
       },
     },
 },
