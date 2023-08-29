@@ -11,7 +11,6 @@ router.get('/', async (req, res) => {
 });
 
 // gets single location 
-
 router.get('/:id', async (req, res) => {
   try {
     const locaData = await Location.findByPk(req.params.id, {
@@ -39,6 +38,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//deletes single location
 router.delete('/:id', async (req, res) => {
   try {
     const locaData = await Location.destroy({
