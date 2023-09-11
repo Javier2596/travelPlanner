@@ -8,14 +8,14 @@ Location.belongsToMany(Traveler, {
     unique: false
   },
   // alias to retrieve data
-  as: 'planned_trips'
+  as: 'location_traveler'
 });
 Traveler.belongsToMany(Location, { 
   through: {
     model: Trips,
     unique: false
   },
-  as: 'location_traveler'
+  as: 'planned_trips'
 });
 
 module.exports = { Traveler, Location, Trips };
